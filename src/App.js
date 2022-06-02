@@ -9,6 +9,14 @@ import EditPeserta from './page/master/dataPeserta/Edit';
 import AddPenguji from './page/master/dataPenguji/Add';
 import React from "react";
 import PendaftaranFit from './page/fitProper/pendaftaran/Pendaftaran';
+import PenilaianFit from './page/fitProper/penilaian/Penilaian';
+import PendaftaranWawancara from './page/fitProper/pendaftaran/Wawancara';
+import Pencarian from './page/fitProper/pencarian/Pencarian';
+import PenilaianWawancara from './page/fitProper/penilaian/Wawancara';
+import RekapNilai from './page/report/RekapNilai';
+import Cetak from './page/report/Cetak';
+import Nilai from './page/report/Nilai';
+import AddPeserta from './page/master/dataPeserta/Add';
 import {
 	BrowserRouter as Router,
 	Route,
@@ -25,6 +33,7 @@ function App() {
 					<div className="content-header">
 						<div className="container-fluid">
 							<Routes>
+								<Route path='/' element={<Dashboard />} />
 								<Route path='/dashboard' element={<Dashboard />} />
 
 								<Route path='/master/dataPeserta' element={<DataPeserta />} />
@@ -32,8 +41,17 @@ function App() {
 
 								<Route path='/master/dataPenguji' element={<DataPenguji />} />
 								<Route path='/master/dataPenguji/add' element={<AddPenguji />} />
+								<Route path='/master/dataPeserta/add' element={<AddPeserta />} />
 
 								<Route path='/fit-proper/pendaftaran' element={<PendaftaranFit />} />
+								<Route path='/fit-proper/penilaian' element={<PenilaianFit />} />
+								<Route path='/fit-proper/pencarian' element={<Pencarian />} />
+								<Route path='/fit-proper/wawancara/pendaftaran' element={<PendaftaranWawancara />} />
+								<Route path='/fit-proper/wawancara/penilaian' element={<PenilaianWawancara />} />
+
+								<Route path='/report/rekap-nilai' element={<RekapNilai />} />
+								<Route path='/report/rekap-nilai/:id' element={<Nilai />} />
+								<Route path='/report/cetak-nilai/:id' element={<Cetak />} />
 							</Routes>
 						</div>
 					</div>
@@ -52,7 +70,7 @@ function App() {
 							</div>
 							<div className="modal-footer justify-content-between">
 								<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-								<a href="" id="delHref"><button type="button" className="btn btn-outline-danger">Hapus</button></a>
+								<button type="button" id="delHref" className="btn btn-outline-danger">Hapus</button>
 							</div>
 						</div>
 

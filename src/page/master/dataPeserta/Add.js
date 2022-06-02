@@ -3,11 +3,12 @@ import Api from "../../../api/Api";
 import "datatables.net-dt/js/dataTables.dataTables"
 import "datatables.net-dt/css/jquery.dataTables.min.css"
 import $ from 'jquery';
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Spinner from "../../loading/Spinner";
-import { ToastContainer } from "react-toastify";
 
-export default function DataPeserta() {
+export default function Add() {
 
     const [dataPegawai, setDataPegawai] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -26,17 +27,28 @@ export default function DataPeserta() {
         });
     });
 
+    const nav = useNavigate();
+
+    const handlerClick = (id) => {
+        Api.updateRolePeserta(id).then((res) => {
+            if(res.status === 200){
+                nav('/master/dataPeserta');
+                toast.success('Berhasil menambah peserta');
+            }
+        });
+    }
+
     if (isLoading) {
         return (
             <div className="row mb-2">
-            <ToastContainer />
                 <div className="col-sm-6">
-                    <h1 className="m-0" style={{ fontWeight: 'normal' }}>Data Peserta</h1>
+                    <h1 className="m-0" style={{ fontWeight: 'normal' }}>Tambah Data Peserta</h1>
                 </div>
                 <div className="col-sm-6">
                     <ol className="breadcrumb float-sm-right">
-                        <li className="breadcrumb-item"><a>Master</a></li>
-                        <li className="breadcrumb-item active">Data Peserta</li>
+                        <li className="breadcrumb-item">Master</li>
+                        <li className="breadcrumb-item">Data Peserta</li>
+                        <li className="breadcrumb-item">Tambah Data Peserta</li>
                     </ol>
                 </div>
                 <div className="col-12">
@@ -45,9 +57,8 @@ export default function DataPeserta() {
                 <div className="col-12">
                     <div className="card">
                         <div className="card-body">
-                            <Link to="/master/dataPeserta/add" className="btn btn-sm bg-primary mb-3"><i
-                                className="fas fa-plus-circle"> Tambah
-                                Data Peserta</i></Link>
+                            <Link to="/master/dataPenguji" className="btn btn-sm bg-primary mb-3"><i
+                                className="fas fa-arrow-circle-left"> Kembali</i></Link>
                             <div className="dt-responsive table-responsive">
                                 <table className="table table-striped table-bordered nowrap dttable">
                                     <thead>
@@ -63,7 +74,7 @@ export default function DataPeserta() {
                                     </thead>
                                     <tbody>
                                         {dataPegawai.map((data, index) => {
-                                            if (data.attributes.role === 'Peserta') {
+                                            if (data.attributes.role !== 'Peserta') {
                                                 return (
                                                     <tr key={index}>
                                                         <td>{data.attributes.namaPegawai}</td>
@@ -74,11 +85,7 @@ export default function DataPeserta() {
                                                         <td>{data.attributes.role}</td>
                                                         <td>
                                                             <div className="btn-group">
-                                                                <a href="#delModal" data-id="" data-toggle="modal">
-                                                                    <button type="button" className="btn bg-pink btn-xs" title="Hapus">
-                                                                        <i className="fas fa-trash"></i>
-                                                                    </button>
-                                                                </a>
+                                                                <button className="btn btn-primary btn-xs" onClick={() => handlerClick(data.id)}><i className="fas fa-plus-circle"></i> Tambah</button>
                                                             </div>
                                                         </td>
                                                     </tr>

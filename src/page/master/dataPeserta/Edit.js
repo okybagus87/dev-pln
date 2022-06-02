@@ -12,16 +12,19 @@ export default function Edit() {
     let { id } = useParams();
 
     useEffect(() => {
-        if(dataPegawai.length == 0){
+        if (dataPegawai.length === 0) {
             Api.getDataPegawaiById(id).then((response) => {
                 setDataPegawai(response.data.data);
-                setData({namaPegawai: response.data.data.attributes.namaPegawai});
+                setData({
+                    namaPegawai: response.data.data.attributes.namaPegawai,
+                    NIP: response.data.data.attributes.NIP
+                });
             })
         }
     });
 
     const handlerchange = e => {
-        setData({...data, [e.target.name]: e.target.value});
+        setData({ [e.target.name]: e.target.value });
     }
 
     return (
@@ -43,15 +46,17 @@ export default function Edit() {
                 <div className="card">
                     <div className="card-body">
                         <Link to="/master/dataPeserta" className="btn btn-sm btn-primary mb-3"><i
-                            className="fas fa-arrow-circle-left">Kembali</i></Link>
-                        <form action="#" method="post">
-                            <div className="form-group">
-                                <label>Nama</label>
-                                <input type="text" className="form-control" id="name" value={data.namaPegawai} onChange={handlerchange} name="namaPegawai" placeholder="Masukkan nama" />
-                                <input type="text" name="id" hidden />
-                            </div>
-                            <button type="submit" className="btn btn-primary float-right">Simpan</button>
-                        </form>
+                            className="fas fa-arrow-circle-left"> Kembali</i></Link>
+                        <div className="form-group">
+                            <label>NIP</label>
+                            <input type="text" className="form-control" id="name" value={data.NIP} onChange={handlerchange} name="namaPegawai" placeholder="Masukkan nama" />
+                            <input type="text" name="id" hidden />
+                        </div>
+                        <div className="form-group">
+                            <label>Nama</label>
+                            <input type="text" className="form-control" id="name" value={data.namaPegawai} onChange={handlerchange} name="namaPegawai" placeholder="Masukkan nama" />
+                            <input type="text" name="id" hidden />
+                        </div>
                     </div>
                 </div>
             </div>
