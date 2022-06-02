@@ -1,6 +1,8 @@
 import axios from 'axios';
 var base_url = 'https://linksmart-pln.herokuapp.com/api/';
 export default {
+
+    //Adrianus
     getDataPegawai: () =>
         axios({
             'method': 'GET',
@@ -24,13 +26,21 @@ export default {
             }
         }),
 
-    deletePenguji: (id) => axios.delete(base_url + 'pengujis/' + id),
+    deletePegawai: (id) =>
+        axios.put(base_url + 'pegawais/' + id, {
+            data: {
+                role: 'None'
+            }
+        }),
+
     addPenguji: (id) =>
         axios.post(base_url + 'pengujis', {
             data: {
                 id_penguji: id
             }
         }),
+
+    //Oky
     getJabatan: () => axios.get(base_url + 'jabatans?populate=*'),
     getPenguji: () => axios.get(base_url + 'pengujis?populate=*'),
     getPengujiById: (id) => axios.get(base_url + 'pengujis/?populate=*'),
@@ -84,6 +94,8 @@ export default {
     getNilaiKc: () => axios.get(base_url + 'key-competencies?populate=*'),
     getNilaiPe: () => axios.get(base_url + 'personal-endurances?populate=*'),
     getNilaiPj: () => axios.get(base_url + 'proyeksi-jabatans?populate=*'),
+
+    //Rafid
     addWawancara: (data) =>
         axios.post(base_url + 'wawancaras', {
             data: {

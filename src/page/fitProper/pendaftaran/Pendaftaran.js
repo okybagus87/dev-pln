@@ -134,10 +134,9 @@ export default function Pendaftaran() {
                                 <div className="form-group col-12 col-sm-6">
                                     <label>Proyeksi Jabatan</label>
                                     <Select
-                                        isMulti
                                         options={jbt}
-                                        // value={dataPush.proyeksi}
-                                        // onChange={(value) => setDataPush({ ...dataPush, proyeksi: value })}
+                                        value={dataPush.proyeksi}
+                                        onChange={(value) => setDataPush({ ...dataPush, proyeksi: value })}
                                     />
                                 </div>
                                 <div className="form-group col-12 col-sm-6">

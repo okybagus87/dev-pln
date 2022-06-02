@@ -36,6 +36,7 @@ function App() {
 								<Route path='/' element={<Dashboard />} />
 								<Route path='/dashboard' element={<Dashboard />} />
 
+								{/* Adrianus */}
 								<Route path='/master/dataPeserta' element={<DataPeserta />} />
 								<Route path='/master/dataPeserta/edit/:id' element={<EditPeserta />} />
 
@@ -43,9 +44,12 @@ function App() {
 								<Route path='/master/dataPenguji/add' element={<AddPenguji />} />
 								<Route path='/master/dataPeserta/add' element={<AddPeserta />} />
 
+								{/* Oky */}
 								<Route path='/fit-proper/pendaftaran' element={<PendaftaranFit />} />
 								<Route path='/fit-proper/penilaian' element={<PenilaianFit />} />
 								<Route path='/fit-proper/pencarian' element={<Pencarian />} />
+
+								{/* Rafid */}
 								<Route path='/fit-proper/wawancara/pendaftaran' element={<PendaftaranWawancara />} />
 								<Route path='/fit-proper/wawancara/penilaian' element={<PenilaianWawancara />} />
 
@@ -55,27 +59,6 @@ function App() {
 							</Routes>
 						</div>
 					</div>
-				</div>
-				<div className="modal fade show" id="delModal" aria-modal="true" role="dialog">
-					<div className="modal-dialog">
-						<div className="modal-content">
-							<div className="modal-header">
-								<h4 className="modal-title">Hapus Data</h4>
-								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-							<div className="modal-body">
-								<p>Apakah anda yakin untuk menghapus data ini?</p>
-							</div>
-							<div className="modal-footer justify-content-between">
-								<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" id="delHref" className="btn btn-outline-danger">Hapus</button>
-							</div>
-						</div>
-
-					</div>
-
 				</div>
 				<Footer />
 			</div>
